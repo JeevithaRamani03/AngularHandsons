@@ -1,0 +1,87 @@
+
+ <div class="container">
+
+    <form [formGroup]="productForm">
+        
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="text" class="form-control" id="email" 
+            formControlName="email" placeholder="Enter Email">
+        </div>
+
+        <div class="form-group">
+            <label for="first_name">First Name:</label>
+            <input type="text" class="form-control" id="first_name" 
+            formControlName="first_name" placeholder="Enter First Name">
+        </div>
+
+        <div class="form-group">
+            <label for="last_name">Last Name:</label>
+            <input type="text" class="form-control" id="last_name" 
+            formControlName="last_name" placeholder="Enter Last Name">
+        </div>
+
+        <div class="form-group">
+            <label for="avatar">Avatar:</label>
+            <input type="text" class="form-control" id="avatar" 
+            formControlName="avatar" placeholder="Enter Avatar">
+        </div>
+
+        <div class="form-group">
+            <table>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-success" 
+                        (click)="PostProduct(productForm.value)">Submit</button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-info" 
+                        (click)="UpdateProduct(productForm.value)">Update</button>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-danger" 
+                        (click)="Reset()">Reset</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="alert alert-success">
+           <h3>{{message}}</h3>
+        </div>
+
+        <br/>
+        <div class="alert alert-info">
+            <h3>Product Details</h3>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-stripped">
+                <tr>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Avatar</th>
+                </tr>
+                <tr *ngFor="let prd of ProductList | async">
+                    <td>{{prd.email}}</td>
+                    <td>{{prd.first_name}}</td>
+                    <td>{{prd.last_name}}</td>
+                    <td>{{prd.avatar}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info" 
+                        (click)="ProductDetailsToEdit(prd.id)">Edit</button>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger" 
+                        (click)="DeleteProduct(prd.id)">Delete</button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+
+
+    </form>
+
+</div>
